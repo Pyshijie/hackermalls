@@ -1,5 +1,9 @@
+
+<!--封装导航栏组件-->
 <template>
+  <!--nav-bar不唯一，所以使用class为好-->
   <div class="nav-bar">
+    <!--具名插槽-->
     <div class="left"><slot name="left"></slot></div>
     <div class="center"><slot name="center"></slot></div>
     <div class="right"><slot name="right"></slot></div>
@@ -12,7 +16,10 @@
   }
 </script>
 
+<!--一般导航栏高度设置为44px-->
+
 <style scoped>
+
   .nav-bar{
     display: flex;
     height: 44px;
