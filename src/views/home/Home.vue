@@ -1,13 +1,16 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav-bar"><div slot="center">购物车</div></nav-bar>
-    <scroll class="content">
+    <scroll class="content"
+            ref="scroll">
       <home-swiper :banners="banners"></home-swiper>
       <home-recommends-view :recommends="recommends"></home-recommends-view>
       <feature-view/>
       <tab-control :titles="['流行','新款','精选']" class="tab-control" @tabControlGetType="tabControlGetType"></tab-control>
       <goods-list :goodsList="showGoods"></goods-list>
     </scroll>
+
+    <back-top class="back-top" @click.native="backTopClick"></back-top>
   </div>
 </template>
 
@@ -17,6 +20,7 @@
   import Scroll from 'components/common/bscroll/Scroll'
   import TabControl from 'components/content/tabControl/TabControl'
   import GoodsList from  'components/content/goods/GoodsList'
+  import BackTop from  'components/content/backTop/BackTop'
 
   import HomeSwiper from './childComps/HomeSwiper'
   import HomeRecommendsView from './childComps/HomeRecommendsView'
@@ -31,6 +35,7 @@
       Scroll,
       TabControl,
       GoodsList,
+      BackTop,
 
       HomeSwiper,
       HomeRecommendsView,
@@ -98,6 +103,9 @@
             this.currentType = 'sell'
             break
         }
+      },
+      backTopClick(){
+        this.$refs.scroll.scrollTo(0,0)
       }
     }
   }
@@ -108,6 +116,8 @@
 
   #home{
     padding-top:44px;
+    height: 100vh;
+    position: relative;
   }
 
   .home-nav-bar{
@@ -134,7 +144,17 @@
   
   .content{
 
-    height: 300px;
-    overflow: hidden;
+    /*height: calc(100% - 93px);*/
+    /*overflow: hidden;*/
+
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+  }
+
+  .back-top{
+    z-index: 9;
   }
 </style>
